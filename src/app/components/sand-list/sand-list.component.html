@@ -1,0 +1,29 @@
+<div class="form-header w3-card-4">
+  <input #myInput type="text"  class="w3-input"
+         placeholder="Suche nach Sand ..."
+         (keyup.enter)="doSearch(myInput.value)"
+  />
+  <button (click)="doSearch(myInput.value)" class="w3-button w3-theme-d1">
+    Suchen
+  </button>
+</div>
+<ul class="w3-ul w3-card-4" *ngFor="let tempSand of sands; let even = even; ">
+  <li class="w3-bar w3-theme-d1">
+    <a routerLink="/sand/{{ tempSand.id }}">
+      <div *ngIf="even; then thenBlock else elseBlock"></div>
+      <ng-template #thenBlock><img src="assets/img/sand_1.jpg" class="w3-bar-item w3-circle w3-hide-small" style="width:85px"></ng-template>
+      <ng-template #elseBlock><img src="assets/img/sand_2.jpg" class="w3-bar-item w3-circle w3-hide-small" style="width:85px"></ng-template>
+      <div class="w3-bar-item">
+        <span class="w3-large">{{ tempSand.name}}</span><br/>
+        <span>{{ tempSand.longname}}</span><br/>
+        <span>{{ (tempSand.latitude !== null) ? (tempSand.latitude | number:'.2-2' ) : "" }}</span>&nbsp;
+        <span>{{ (tempSand.longitude !== null) ? (tempSand.longitude | number:'.2-2' ) : "" }}</span>
+      </div>
+    </a>
+  </li>
+</ul>
+<mat-paginator [length]="theTotalElements"
+               [pageSize]="thePageSize"
+               [pageSizeOptions]="[5, 10, 25, 50]"
+               (page)="onPageChange($event)">
+</mat-paginator>

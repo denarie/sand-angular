@@ -1,0 +1,27 @@
+<div class="w3-card-4" style="width:70%">
+  <header class="w3-container w3-theme-d1">
+    <h3>{{ sand?.name}}</h3>
+  </header>
+  <div class="w3-container w3-center">
+    <span>{{ sand?.longname}}</span><br/>
+    <span>{{ (sand?.latitude !== null) ? (sand?.latitude | number:'.2-2' ) : "" }}</span>&nbsp;
+    <span>{{ (sand?.longitude !== null) ? (sand?.longitude | number:'.2-2' ) : "" }}</span><br/>
+    <span>{{ sand?.day}}</span>.&nbsp;
+    <span>{{ sand?.month?.name}}</span>&nbsp;
+    <span>{{ sand?.year}}</span><br/>
+    </div>
+  <div class="w3-container">
+    <span>{{ sand?.history}}</span><br/>
+    <span>{{ sand?.remark}}</span><br/>
+  </div>
+  <ul class="w3-ul w3-card-4" *ngFor="let tempPerson of persons; ">
+    <li class="w3-ul w3-border w3-theme-l2">
+      <a routerLink="/person/{{ tempPerson.id }}">
+        <span class="w3-large">{{ tempPerson.name}}</span>
+      </a>
+    </li>
+  </ul>
+</div>
+<div class="w3-card-4" style="width:70%">
+  <app-map-single [lat]="sand?.latitude" [lng]="sand?.longitude"></app-map-single>
+</div>

@@ -1,0 +1,23 @@
+<div class="w3-card-4" style="width:70%">
+  <header class="w3-container w3-theme-l2">
+    <h3>{{ person?.name}}</h3>
+  </header>
+  <div class="w3-container w3-center">
+    <span>{{ person?.remark}}</span><br/>
+  </div>
+  <ul class="w3-ul w3-card-4" *ngFor="let tempSand of sands; ">
+    <li class="w3-ul w3-border  w3-theme-d1">
+      <a routerLink="/sand/{{ tempSand.id }}">
+        <span class="w3-large">{{ tempSand.name}}</span>
+      </a>
+    </li>
+  </ul>
+  <mat-paginator [length]="theTotalElements"
+                 [pageSize]="thePageSize"
+                 [pageSizeOptions]="[5, 10, 25, 50]"
+                 (page)="onPageChange($event)">
+  </mat-paginator>
+</div>
+<div class="w3-card-4" style="width:70%">
+  <app-map-multi [sands]="allSands"></app-map-multi>
+</div>

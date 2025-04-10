@@ -1,0 +1,34 @@
+<div class="w3-card-4" style="width:70%">
+  <header class="w3-container w3-theme-l4">
+    <h3>{{ continent?.name}}</h3>
+  </header>
+  <ul class="w3-ul w3-card-4" *ngFor="let tempSand of sands; ">
+    <li class="w3-ul w3-border  w3-theme-d1">
+      <a routerLink="/sand/{{ tempSand.id }}">
+        <span class="w3-large">{{ tempSand.name}}</span>
+      </a>
+    </li>
+  </ul>
+  <mat-paginator [length]="theTotalElements"
+                 [pageSize]="thePageSize"
+                 [pageSizeOptions]="[5, 10, 25, 50]"
+                 (page)="onPageChange($event)">
+  </mat-paginator>
+</div>
+<div class="w3-card-4" style="width:70%">
+  <ul class="w3-ul w3-card-4" *ngFor="let tempCountry of countries; ">
+    <li class="w3-ul w3-border  w3-theme-l3">
+      <a routerLink="/country/{{ tempCountry.id }}">
+        <span class="w3-large">{{ tempCountry.nameDe}}</span>
+      </a>
+    </li>
+  </ul>
+  <mat-paginator [length]="theTotalElementsCountries"
+                 [pageSize]="thePageSizeCountries"
+                 [pageSizeOptions]="[5, 10, 25, 50]"
+                 (page)="onPageChangeCountries($event)">
+  </mat-paginator>
+</div>
+<div class="w3-card-4" style="width:70%">
+  <app-map-multi [sands]="allSands"></app-map-multi>
+</div>

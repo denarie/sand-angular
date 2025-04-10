@@ -1,0 +1,26 @@
+<div class="w3-card-4">
+  <input #myInput  class="w3-input" type="text"
+         placeholder="Suche nach Leuten ..."
+         (keyup.enter)="doSearch(myInput.value)"
+  />
+  <button (click)="doSearch(myInput.value)" class="w3-button w3-theme-l3">
+    Suchen
+  </button>
+</div>
+<ul class="w3-ul w3-card-4" *ngFor="let tempPerson of persons; let even = even; ">
+  <li class="w3-bar w3-theme-l2">
+    <a routerLink="/person/{{ tempPerson.id }}">
+      <div *ngIf="even; then thenBlock else elseBlock"></div>
+      <ng-template #thenBlock><img src="assets/img/person_1.jpg" class="w3-bar-item w3-circle w3-hide-small" style="width:85px"></ng-template>
+      <ng-template #elseBlock><img src="assets/img/person_2.jpg" class="w3-bar-item w3-circle w3-hide-small" style="width:85px"></ng-template>
+      <div class="w3-bar-item">
+        <span class="w3-large">{{ tempPerson.name}}</span><br/>
+      </div>
+    </a>
+  </li>
+</ul>
+<mat-paginator [length]="theTotalElements"
+               [pageSize]="thePageSize"
+               [pageSizeOptions]="[5, 10, 25, 50]"
+               (page)="onPageChange($event)">
+</mat-paginator>

@@ -1,0 +1,10 @@
+<ul class="w3-ul w3-card-4" *ngFor="let tempContinent of continents;">
+  <li class="w3-bar w3-theme-l4">
+    <a routerLink="/continent/{{ tempContinent.id }}">
+      <div><img src="assets/img/continent.jpg" class="w3-bar-item w3-circle w3-hide-small" style="width:85px"></div>
+      <div class="w3-bar-item">
+        <span class="w3-large">{{ tempContinent.name}}</span><br/>
+      </div>
+    </a>
+  </li>
+</ul>
