@@ -6,6 +6,7 @@ import {Sand} from '../../common/sand';
 import {NgForOf} from '@angular/common';
 import {MatPaginator, PageEvent} from '@angular/material/paginator';
 import {MapMultiComponent} from '../map-multi/map-multi.component';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-person-details',
@@ -29,7 +30,7 @@ export class PersonDetailsComponent  implements OnInit {
   thePageSize: number = 10;
   theTotalElements: number = 0;
 
-  constructor(private sandService: SandService, private route: ActivatedRoute) { }
+  constructor(private sandService: SandService, private route: ActivatedRoute, private title: Title) { }
 
   ngOnInit() {
     // get the "id" param string. convert string to a number using the "+" symbol
@@ -57,6 +58,9 @@ export class PersonDetailsComponent  implements OnInit {
     this.sandService.getPerson(theId).subscribe(
       data => {
         this.person = data;
+        if (this.person.name != null) {
+          this.title.setTitle(this.person.name);
+        }
       }
     )
   }

@@ -7,6 +7,7 @@ import {NgForOf} from '@angular/common';
 import {MatPaginator, PageEvent} from '@angular/material/paginator';
 import {MapMultiComponent} from '../map-multi/map-multi.component';
 import {Country} from '../../common/country';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-continent-details',
@@ -36,7 +37,7 @@ export class ContinentDetailsComponent  implements OnInit {
   theTotalElementsCountries: number = 0;
 
 
-  constructor(private sandService: SandService, private route: ActivatedRoute) { }
+  constructor(private sandService: SandService, private route: ActivatedRoute, private title: Title) { }
 
   ngOnInit() {
     // get the "id" param string. convert string to a number using the "+" symbol
@@ -59,6 +60,9 @@ export class ContinentDetailsComponent  implements OnInit {
     this.sandService.getContinent(theId).subscribe(
       data => {
         this.continent = data;
+        if (this.continent.name != null) {
+          this.title.setTitle(this.continent.name);
+        }
       }
     )
   }

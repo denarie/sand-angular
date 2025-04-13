@@ -6,6 +6,7 @@ import {DecimalPipe, JsonPipe, KeyValuePipe, NgForOf, NgIf} from '@angular/commo
 import { LeafletModule } from '@bluehalo/ngx-leaflet';
 import {Person} from '../../common/person';
 import {MapSingleComponent} from '../map-single/map-single.component';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-sand-details',
@@ -20,7 +21,7 @@ export class SandDetailsComponent implements OnInit {
   sand: Sand | undefined;
   persons: Person[] | undefined;
 
-  constructor(private sandService: SandService, private route: ActivatedRoute) { }
+  constructor(private sandService: SandService, private route: ActivatedRoute,  private title: Title) { }
 
   ngOnInit() {
     // get the "id" param string. convert string to a number using the "+" symbol
@@ -41,6 +42,9 @@ export class SandDetailsComponent implements OnInit {
     this.sandService.getSand(theId).subscribe(
       data => {
         this.sand = data;
+        if (this.sand.name != null) {
+          this.title.setTitle(this.sand.name);
+        }
       }
     )
   }

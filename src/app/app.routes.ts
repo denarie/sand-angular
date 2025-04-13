@@ -10,12 +10,12 @@ import {ContinentListComponent} from './components/continent-list/continent-list
 import {MapSingleComponent} from './components/map-single/map-single.component';
 
 export const routes: Routes = [
-  {path: 'sand', component: SandListComponent},
-  {path: 'sand/:id', component: SandDetailsComponent},
-  {path: 'person', component: PersonListComponent},
-  {path: 'person/:id', component: PersonDetailsComponent},
-  {path: 'country', component: CountryListComponent},
-  {path: 'country/:id', component: CountryDetailsComponent},
-  {path: 'continent', component: ContinentListComponent},
-  {path: 'continent/:id', component: ContinentDetailsComponent},
+  {path: 'sand', title: 'Sände' , component: SandListComponent},
+  {path: 'sand/:id', title: 'Sand', component: SandDetailsComponent},
+  {path: 'person', title: 'Personen', component: PersonListComponent},
+  {path: 'person/:id', title: 'Person' ,component: PersonDetailsComponent},
+  {path: 'country', title: 'Länder' ,component: CountryListComponent},
+  {path: 'country/:id', title: 'Land' ,component: CountryDetailsComponent},
+  {path: 'continent', title: 'Erdteile' ,component: ContinentListComponent},
+  {path: 'continent/:id', title: 'Erdteil' ,component: ContinentDetailsComponent},
 ];
